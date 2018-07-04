@@ -15,7 +15,7 @@ import java.text.ParseException;
  */
 public class Decimal extends NumeroCalculadora {
 
-    private final NumberFormat formato = new DecimalFormat("###0.###");
+    private NumberFormat formato;
 
     /**
      *
@@ -30,8 +30,14 @@ public class Decimal extends NumeroCalculadora {
      * @throws NumberFormatException
      */
     public Decimal(String valor) throws NumberFormatException {
-        super(10);
-        setValor(valor);
+        super(valor, 10);
+    }
+    
+    private NumberFormat getFormato(){
+        if(formato == null){
+            formato = new DecimalFormat("###0.###");
+        }
+        return formato;
     }
 
     /**
@@ -46,7 +52,7 @@ public class Decimal extends NumeroCalculadora {
             throw new IllegalArgumentException("El numero dado no ha sido inicializado");
         }
         try {
-            formato.parse(numero);
+            getFormato().parse(numero);
         } catch (ParseException ex) {
             throw new NumberFormatException("El numero no tiene un formato válido");
         }
@@ -63,7 +69,7 @@ public class Decimal extends NumeroCalculadora {
         if (numero == null) {
             throw new IllegalArgumentException("El numero dado no ha sido inicializado");
         }
-        setValor(formato.format(numero.doubleValue()));
+        setValor(getFormato().format(numero.doubleValue()));
         return this;
     }
 
