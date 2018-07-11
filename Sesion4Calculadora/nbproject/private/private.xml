@@ -3,14 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="CursoJEE">
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/test/com/edu/utp/isc/cursojee/calculadora/numero/DecimalTest.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/NumeroCalculadora.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Decimal.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/logica/OperacionesBasicas.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Binario.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/test/com/edu/utp/isc/cursojee/calculadora/logica/ConvertidorDeNumeroTest.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/Calculadora.java</file>
-            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion3Calculadora/src/com/edu/utp/isc/cursojee/calculadora/logica/ConvertidorDeNumero.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Hexadecimal.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/test/com/edu/utp/isc/cursojee/calculadora/numero/DecimalTest.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/logica/OperacionesBasicas.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/test/com/edu/utp/isc/cursojee/calculadora/numero/BinarioTest.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Decimal.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/logica/ConvertidorDeNumero.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/test/com/edu/utp/isc/cursojee/calculadora/logica/ConvertidorDeNumeroTest.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Binario.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/NumeroCalculadora.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/logica/BaseNumerica.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/numero/Octal.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/test/com/edu/utp/isc/cursojee/calculadora/logica/OperacionesBasicasTest.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/src/com/edu/utp/isc/cursojee/calculadora/Calculadora.java</file>
+            <file>file:/D:/Personales/Proyectos/CursoJEE/Sesion4Calculadora/test/com/edu/utp/isc/cursojee/calculadora/CalculadoraTest.java</file>
         </group>
     </open-files>
 </project-private>
