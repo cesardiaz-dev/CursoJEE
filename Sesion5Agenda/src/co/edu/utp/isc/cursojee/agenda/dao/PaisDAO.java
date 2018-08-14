@@ -61,7 +61,8 @@ public class PaisDAO extends AbstractDAO<Pais, Integer> {
     @Override
     protected Integer generarId() throws Exception {
         Integer respuesta;
-        try (PreparedStatement pstmt = getConnection().prepareStatement(PREPARED_GENERAR);
+        
+        try (PreparedStatement pstmt = getConnection().prepareStatement(PREPARED_GENERAR); 
                 ResultSet rset = pstmt.executeQuery()) {
             respuesta = 1;
             if (rset.next()) {
@@ -83,7 +84,7 @@ public class PaisDAO extends AbstractDAO<Pais, Integer> {
             }
             if (filtro.getNombre() != null) {
                 query.append(isWhere ? " WHERE" : " AND")
-                        .append(" NOMBRE = '").append(filtro.getNombre()).append("'");
+                        .append(" NOMBRE LIKE '%").append(filtro.getNombre()).append("%'");
             }
         }
         return query.toString();

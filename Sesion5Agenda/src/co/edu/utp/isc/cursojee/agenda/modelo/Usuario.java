@@ -48,7 +48,7 @@ public class Usuario extends Persona implements AbstractModelo<String> {
 
     @Override
     public void setId(String id) {
-        setNombreUsuario(nombreUsuario);
+        setNombreUsuario(id);
     }
     
     

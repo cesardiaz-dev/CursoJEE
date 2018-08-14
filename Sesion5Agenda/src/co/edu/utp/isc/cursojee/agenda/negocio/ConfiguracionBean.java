@@ -8,6 +8,7 @@ package co.edu.utp.isc.cursojee.agenda.negocio;
 import co.edu.utp.isc.cursojee.agenda.dao.CiudadDAO;
 import co.edu.utp.isc.cursojee.agenda.dao.DepartamentoDAO;
 import co.edu.utp.isc.cursojee.agenda.dao.PaisDAO;
+import co.edu.utp.isc.cursojee.agenda.modelo.Pais;
 
 /**
  *
@@ -22,6 +23,10 @@ public class ConfiguracionBean {
         paisDAO = new PaisDAO();
         departamentoDAO = new DepartamentoDAO();
         ciudadDAO = new CiudadDAO();
+    }
+    
+    public Pais guardarPais(Pais pais) throws Exception{
+        return paisDAO.guardar(pais);
     }
 
 }

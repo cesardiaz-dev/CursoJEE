@@ -6,6 +6,7 @@
 package co.edu.utp.isc.cursojee.agenda.base;
 
 import co.edu.utp.isc.cursojee.agenda.db.UtilidadBaseDatos;
+import co.edu.utp.isc.cursojee.agenda.modelo.Hoja;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,7 +61,8 @@ public abstract class AbstractDAO<ENTITY extends AbstractModelo<ID>, ID> {
 
     public int eliminar(ID id) throws Exception {
         int respuesta;
-        try (PreparedStatement pstmt = getConnection().prepareStatement(PREPARED_DELETE)) {
+        try (PreparedStatement pstmt = getConnection().prepareStatement(PREPARED_DELETE 
+                + PREPARED_WHEREID)) {
             agregarIdASentencia(pstmt, id);
 
             respuesta = pstmt.executeUpdate();
