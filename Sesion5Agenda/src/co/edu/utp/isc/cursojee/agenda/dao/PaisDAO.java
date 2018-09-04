@@ -17,7 +17,7 @@ import java.sql.ResultSet;
  */
 public class PaisDAO extends AbstractDAO<Pais, Integer> {
 
-    private final DepartamentoDAO departamentoDAO;
+//    private final DepartamentoDAO departamentoDAO;
 
     public PaisDAO() {
         PREPARED_INSERT = "INSERT INTO PAIS (ID, NOMBRE) VALUES (?, ?)";
@@ -30,7 +30,7 @@ public class PaisDAO extends AbstractDAO<Pais, Integer> {
 
         PREPARED_GENERAR = "SELECT MAX(ID) FROM PAIS";
 
-        departamentoDAO = new DepartamentoDAO();
+//        departamentoDAO = new DepartamentoDAO();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class PaisDAO extends AbstractDAO<Pais, Integer> {
         if (dto.getDepartamentos() == null) {
             Departamento ddto = new Departamento();
             ddto.setPais(dto);
-            dto.setDepartamentos(departamentoDAO.listar(ddto));
+//            dto.setDepartamentos(departamentoDAO.listar(ddto));
         }
 
         return dto;

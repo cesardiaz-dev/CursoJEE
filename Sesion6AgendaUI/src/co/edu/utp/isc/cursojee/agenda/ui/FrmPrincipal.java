@@ -5,6 +5,9 @@
  */
 package co.edu.utp.isc.cursojee.agenda.ui;
 
+import co.edu.utp.isc.cursojee.agenda.db.CrearBaseDatos;
+import co.edu.utp.isc.cursojee.agenda.db.UtilidadBaseDatos;
+
 /**
  *
  * @author DiazOspina
@@ -15,7 +18,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
      * Creates new form FrmPrincipal
      */
     public FrmPrincipal() {
+        UtilidadBaseDatos.registrarDriver();
+        //CrearBaseDatos.iniciar();
+        
         initComponents();
+        
+        tbdPestanas.add("Paises", new PnlPais());
+        
+        setSize(800,600);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,10 +38,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tbdPestanas = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(tbdPestanas, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -71,6 +82,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane tbdPestanas;
     // End of variables declaration//GEN-END:variables
 }

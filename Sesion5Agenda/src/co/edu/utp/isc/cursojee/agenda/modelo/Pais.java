@@ -33,4 +33,9 @@ public class Pais extends ModeloIdInteger {
         this.departamentos = departamentos;
     }
 
+    @Override
+    public String toString() {
+        return id + " - " + nombre;
+    }
+
 }

@@ -7,8 +7,11 @@ package co.edu.utp.isc.cursojee.agenda.ui;
 
 import co.edu.utp.isc.cursojee.agenda.modelo.Pais;
 import co.edu.utp.isc.cursojee.agenda.negocio.ConfiguracionBean;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,18 @@ public class PnlPais extends javax.swing.JPanel {
      */
     public PnlPais() {
         initComponents();
+
+        cargarPaises();
+    }
+
+    private void cargarPaises() {
+        try {
+            paises = configuracionBean.listaPaises();
+
+        } catch (Exception ex) {
+            Logger.getLogger(PnlPais.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        lstPaises.setModel(new PaisListModel());
     }
 
     /**
@@ -35,8 +50,11 @@ public class PnlPais extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPaises = new javax.swing.JList<>();
+        jPanel4 = new javax.swing.JPanel();
+        btnEliminar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
@@ -56,16 +74,31 @@ public class PnlPais extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jSplitPane1.setDividerLocation(150);
+        jSplitPane1.setDividerLocation(200);
 
-        lstPaises.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        lstPaises.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPaisesValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(lstPaises);
 
-        jSplitPane1.setLeftComponent(jScrollPane1);
+        jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnEliminar);
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.SOUTH);
+
+        jSplitPane1.setLeftComponent(jPanel3);
 
         jLabel1.setText("ID");
 
@@ -73,6 +106,12 @@ public class PnlPais extends javax.swing.JPanel {
         txtId.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel2.setText("Nombre");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +136,7 @@ public class PnlPais extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombre))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 153, Short.MAX_VALUE)
+                        .addGap(0, 103, Short.MAX_VALUE)
                         .addComponent(btnGuardar)))
                 .addContainerGap())
         );
@@ -126,6 +165,8 @@ public class PnlPais extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        lstPaises.clearSelection();
+
         txtId.setText("");
         txtNombre.setText("");
         txtNombre.requestFocus();
@@ -134,36 +175,97 @@ public class PnlPais extends javax.swing.JPanel {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             // TODO Valida campos
-            
-            
             Pais pais = new Pais();
-            //pais.setId();
+            pais.setId(txtId.getText().isEmpty() ? null : Integer.valueOf(txtId.getText()));
             pais.setNombre(txtNombre.getText());
-            
+
             pais = configuracionBean.guardarPais(pais);
-            
+            JOptionPane.showMessageDialog(this, 
+                    "Se ha guardado exitosamente", 
+                    "Mi App", 
+                    JOptionPane.INFORMATION_MESSAGE);
+
             // TODO Agregar a la lista
-            
+            txtId.setText("" + pais.getId());
+            if (lstPaises.getSelectedValue() == null) {
+                paises.add(pais);
+            } else {
+                paises.set(lstPaises.getSelectedIndex(), pais);
+            }
+
+            lstPaises.updateUI();
+            lstPaisesValueChanged(null);
         } catch (Exception ex) {
             Logger.getLogger(PnlPais.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void lstPaisesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPaisesValueChanged
+        Pais pais = lstPaises.getSelectedValue();
+
+        btnEliminar.setEnabled(pais != null);
+        txtId.setText(pais != null ? "" + pais.getId() : "");
+        txtNombre.setText(pais != null ? pais.getNombre() : "");
+    }//GEN-LAST:event_lstPaisesValueChanged
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            Pais pais = lstPaises.getSelectedValue();
+            
+            configuracionBean.eliminarPais(pais);
+            JOptionPane.showMessageDialog(this, 
+                    "Se ha eliminado exitosamente", 
+                    "Mi App", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+            paises.remove(pais);
+            lstPaises.updateUI();
+            lstPaises.clearSelection();
+        } catch (Exception ex) {    
+            Logger.getLogger(PnlPais.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        btnGuardarActionPerformed(evt);
+    }//GEN-LAST:event_txtNombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JList<String> lstPaises;
+    private javax.swing.JList<Pais> lstPaises;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     private ConfiguracionBean configuracionBean = new ConfiguracionBean();
+    private List<Pais> paises;
+
+    private class PaisListModel extends DefaultListModel<Pais> {
+
+        public PaisListModel() {
+        }
+
+        @Override
+        public int getSize() {
+            return paises.size();
+        }
+
+        @Override
+        public Pais getElementAt(int i) {
+            return paises.get(i);
+        }
+
+    }
 
 }

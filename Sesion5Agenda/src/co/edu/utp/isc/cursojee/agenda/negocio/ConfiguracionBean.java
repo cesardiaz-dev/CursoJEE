@@ -9,6 +9,7 @@ import co.edu.utp.isc.cursojee.agenda.dao.CiudadDAO;
 import co.edu.utp.isc.cursojee.agenda.dao.DepartamentoDAO;
 import co.edu.utp.isc.cursojee.agenda.dao.PaisDAO;
 import co.edu.utp.isc.cursojee.agenda.modelo.Pais;
+import java.util.List;
 
 /**
  *
@@ -27,6 +28,14 @@ public class ConfiguracionBean {
     
     public Pais guardarPais(Pais pais) throws Exception{
         return paisDAO.guardar(pais);
+    }
+
+    public List<Pais> listaPaises() throws Exception {
+        return paisDAO.listarTodo();
+    }
+
+    public void eliminarPais(Pais pais) throws Exception {
+        paisDAO.eliminar(pais.getId());
     }
 
 }
